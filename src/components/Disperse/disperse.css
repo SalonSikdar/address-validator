@@ -1,0 +1,60 @@
+.wrap-disperse {
+  max-width: 80em;
+  padding: 2em;
+}
+
+.line-numbered-textbox {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ccc;
+}
+
+.line-numbers {
+  flex: 0 0 30px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-right: 1px solid #ccc;
+  user-select: none;
+}
+
+.line-number {
+  margin-bottom: 1px;
+  color: #888;
+}
+
+.text-box {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  resize: none;
+}
+
+button {
+  background-color: #0074d9;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 10px 0;
+}
+
+.error-message {
+  color: #ff4136;
+  margin-top: 10px;
+  padding: 1em;
+  border: 1px solid #ff4136;
+}
+
+h4 {
+  color: #888;
+}
+
+.duplicate-cta {
+  flex-direction: row;
+  color: #ff4136;
+  font-size: small;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
