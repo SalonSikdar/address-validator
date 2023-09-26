@@ -6,20 +6,21 @@
 .line-numbered-textbox {
   display: flex;
   flex-direction: row;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(18, 17, 17);
+  border-radius: 40px;
 }
 
 .line-numbers {
   flex: 0 0 30px;
   padding: 10px;
-  background-color: #f0f0f0;
+  background-color: rgb(18, 17, 17);
   border-right: 1px solid #ccc;
   user-select: none;
 }
 
 .line-number {
   /* margin-bottom: 1.5px; */
-  color: #888;
+  color: white;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -37,7 +38,7 @@ button {
   padding: 5px 10px;
   border: none;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 30px !important;
   margin: 10px 10px;
   width: 100%;
 }
@@ -54,15 +55,18 @@ button {
   border: 1px solid #ff4136;
 }
 
-h5 {
+.instruction-txt {
   color: #888 !important;
+}
+
+h5 {
   margin: 20px 0px;
 }
 
 .duplicate-cta {
   flex-direction: row;
   color: #ff4136;
-  font-size: small;
+  font-size: medium;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -71,4 +75,12 @@ h5 {
 textarea {
   font-size: 16px;
   line-height: 1.55;
+  background-color: rgb(18, 17, 17);
+  min-height: 300px;
+  color: white;
+  border-radius: 0 40px 40px 0;
+}
+
+.error-cta {
+  margin: 10px;
 }

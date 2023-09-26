@@ -79,9 +79,18 @@ function Disperse() {
                 [address, value] = lines[i].split('=');
             else if (lines[i].includes(","))
                 [address, value] = lines[i].split(',');
+
             if (!value || !Number.isInteger(Number(value))) {
                 lineNumberWithError = i + 1;
                 errorString = errorString + `\nLine ${lineNumberWithError} wrong amount.`;
+            }
+
+            // Check the length of the string
+            const isLength42 = address.length === 42;
+            const startsWith0x = address.startsWith("0x");
+            if (!isLength42 || !startsWith0x) {
+                lineNumberWithError = i + 1;
+                errorString = errorString + `\nLine ${lineNumberWithError} invalid Ethereum address.`;
             }
 
             if (addressMap.has(address)) {
@@ -122,7 +131,11 @@ function Disperse() {
         <div className='wrap-disperse'>
             <form onSubmit={handleSubmit}>
                 <br />
-                <h5>Addresses with amounts</h5>
+                <div className="d-flex justify-content-between">
+                    <h5 className='instruction-txt'>Addresses with amounts</h5>
+                    <h5>Upload File</h5>
+                </div>
+
                 <div className="line-numbered-textbox">
                     <div className="line-numbers">
                         {text.split('\n').map((line, index) => (
@@ -138,9 +151,11 @@ function Disperse() {
                         placeholder="Type or paste your text here..."
                     />
                 </div>
-                <h5>Separated by "," or " " or "="</h5>
-                <br />
-                {error.isDuplicateError && <div className='duplicate-cta'><div onClick={keepFirstOne}>Keep The First One </div><div> | </div><div onClick={combineBalances}> Combine Balance </div></div>}
+                <div className="d-flex justify-content-between">
+                    <h5 className='instruction-txt'>Separated by "," or " " or "="</h5>
+                    <h5>show example</h5>
+                </div>
+                {error.isDuplicateError && <div className='duplicate-cta'><div className='error-cta' onClick={keepFirstOne}>Keep The First One  </div><div> | </div><div className='error-cta' onClick={combineBalances}>  Combine Balance </div></div>}
                 {error.error && <div className="error-message"><pre>{error.error}</pre></div>}
                 <br />
                 <button className="btn btn-lg btn-ombre" type="submit">Next</button>
