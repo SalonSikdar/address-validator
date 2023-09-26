@@ -89,8 +89,13 @@ function Disperse() {
             const isLength42 = address.length === 42;
             const startsWith0x = address.startsWith("0x");
             if (!isLength42 || !startsWith0x) {
-                lineNumberWithError = i + 1;
-                errorString = errorString + `\nLine ${lineNumberWithError} invalid Ethereum address.`;
+                if (lineNumberWithError != i + 1) {
+                    lineNumberWithError = i + 1;
+                    errorString = errorString + `\nLine ${lineNumberWithError} invalid Ethereum address.`;
+                }
+                else {
+                    errorString = errorString + ` and invalid Ethereum address.`;
+                }
             }
 
             if (addressMap.has(address)) {
