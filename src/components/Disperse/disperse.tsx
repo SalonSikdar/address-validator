@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './disperse.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootswatch/dist/darkly/bootstrap.min.css';
 
 function Disperse() {
     const [text, setText] = useState('');
@@ -7,6 +9,8 @@ function Disperse() {
         error: '',
         isDuplicateError: false,
     });
+    let [address, value] = ["", ""];
+
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
     };
@@ -17,7 +21,13 @@ function Disperse() {
         const uniqueLines: string[] = [];
 
         for (const line of lines) {
-            const [address, value] = line.split(' ');
+            if (line.includes(' '))
+                [address, value] = line.split(' ');
+            else if (line.includes("="))
+                [address, value] = line.split('=');
+            else if (line.includes(","))
+                [address, value] = line.split(',');
+
             if (!addressSet.has(address)) {
                 uniqueLines.push(line);
                 addressSet.add(address);
@@ -32,7 +42,12 @@ function Disperse() {
         const addressMap = new Map<string, number>();
 
         for (const line of lines) {
-            const [address, value] = line.split(' ');
+            if (line.includes(' '))
+                [address, value] = line.split(' ');
+            else if (line.includes("="))
+                [address, value] = line.split('=');
+            else if (line.includes(","))
+                [address, value] = line.split(',');
 
             if (addressMap.has(address)) {
                 addressMap.set(address, addressMap.get(address)! + Number(value));
@@ -58,10 +73,15 @@ function Disperse() {
         const addressMap = new Map<string, number[]>();
 
         for (let i = 0; i < lines.length; i++) {
-            const [address, value] = lines[i].split(' ');
+            if (lines[i].includes(' '))
+                [address, value] = lines[i].split(' ');
+            else if (lines[i].includes("="))
+                [address, value] = lines[i].split('=');
+            else if (lines[i].includes(","))
+                [address, value] = lines[i].split(',');
             if (!value || !Number.isInteger(Number(value))) {
                 lineNumberWithError = i + 1;
-                errorString = errorString + `\n` + `Line ${lineNumberWithError} wrong amount.`;
+                errorString = errorString + `\nLine ${lineNumberWithError} wrong amount.`;
             }
 
             if (addressMap.has(address)) {
@@ -101,7 +121,8 @@ function Disperse() {
     return (
         <div className='wrap-disperse'>
             <form onSubmit={handleSubmit}>
-                <h4>Addresses with amounts</h4>
+                <br />
+                <h5>Addresses with amounts</h5>
                 <div className="line-numbered-textbox">
                     <div className="line-numbers">
                         {text.split('\n').map((line, index) => (
@@ -117,10 +138,12 @@ function Disperse() {
                         placeholder="Type or paste your text here..."
                     />
                 </div>
-                <h4>Separated by "," or " " or "="</h4>
+                <h5>Separated by "," or " " or "="</h5>
+                <br />
                 {error.isDuplicateError && <div className='duplicate-cta'><div onClick={keepFirstOne}>Keep The First One </div><div> | </div><div onClick={combineBalances}> Combine Balance </div></div>}
                 {error.error && <div className="error-message"><pre>{error.error}</pre></div>}
-                <button type="submit">Next</button>
+                <br />
+                <button className="btn btn-lg btn-ombre" type="submit">Next</button>
             </form>
         </div>
     );

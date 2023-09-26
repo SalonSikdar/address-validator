@@ -18,8 +18,10 @@
 }
 
 .line-number {
-  margin-bottom: 1px;
+  /* margin-bottom: 1.5px; */
   color: #888;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .text-box {
@@ -36,7 +38,13 @@ button {
   border: none;
   cursor: pointer;
   border-radius: 3px;
-  margin: 10px 0;
+  margin: 10px 10px;
+  width: 100%;
+}
+
+.btn-ombre {
+  background: linear-gradient(to right, #eb33ff, #7a49a5, #eb33ff);
+  color: white;
 }
 
 .error-message {
@@ -46,8 +54,9 @@ button {
   border: 1px solid #ff4136;
 }
 
-h4 {
-  color: #888;
+h5 {
+  color: #888 !important;
+  margin: 20px 0px;
 }
 
 .duplicate-cta {
@@ -57,4 +66,9 @@ h4 {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+textarea {
+  font-size: 16px;
+  line-height: 1.55;
 }
