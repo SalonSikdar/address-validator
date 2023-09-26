@@ -94,7 +94,7 @@ function Disperse() {
                     errorString = errorString + `\nLine ${lineNumberWithError} invalid Ethereum address.`;
                 }
                 else {
-                    errorString = errorString + ` and invalid Ethereum address.`;
+                    errorString = errorString.substring(0, errorString.length - 1) + ` and invalid Ethereum address.`;
                 }
             }
 
